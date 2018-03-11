@@ -1,0 +1,10 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "My New Hugo Site"
+
+theme = "onetwothree"
+
+[params]
+    twitter = "jeffawang"
+    navigation = ["about.md"]
+
