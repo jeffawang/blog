@@ -19,11 +19,31 @@ Target systems:
 Terminal Emulators
 ---
 
-One key feature for Mac/Windows terminal emulators that I look for is the ability to create custom keybindings/macros.
+One key feature I look for in Mac/Windows terminal emulators is the ability to create custom keybindings/macros.
 
 Ideally, the keybind system can send multiple key chords in series, so that I can combine tmux multi-chord keybinds into one. For example, in iTerm2, I've set `⌘J` to send `C-\` and then `J`, so that I can use the one chord to switch windows.
 
-### MacOS: iTerm2
+Windows: WSL(Ubuntu) + ConEmu
+---
+
+On Windows, I use [ConEmu](https://conemu.github.io/) as a terminal emulator. This is because the default terminal emulator that comes with WSL doesn't support custom keybindings.
+
+<img src="/images/tmux/conemu_tmux.png" style="border-radius: 0" alt="tmux, ConEmu, and WSL together"/>
+
+I like this setup because it's very similar to what I have on MacOS (as described in the next section). This greatly reduces the context switch when moving between Windows desktop and Macbook.
+
+Since ConEmu isn't just for WSL, I had to [set up a bash task](/images/tmux/conemu_bash_task.png), then update the ConEmu startup task to use it.
+
+Then, I was able to set up macros, similar to keybindings I had in iTerm2.
+
+<img src="/images/tmux/conemu_settings.png" style="border-radius: 0" alt="ConEmu can support up to 32 macros"/>
+
+So far, this has worked out. Just like I'm able to use `⌘J` on MacOS to go to the next tmux window, I can use `Alt-J` on Windows to do the same.
+
+One caveat is that ConEmu only supports having 32 macros. This is enough for me at the moment, but if I need more in the future, I may look into something like AutoHotkey.
+
+MacOS: iTerm2
+---
 
 For MacOS, I chose iTerm2 because it's able to send a series of hex codes to the terminal via a keybind. This way, if I am using tmux through ssh, I can still use the keybindings, as if tmux were running locally.
 
@@ -35,20 +55,12 @@ After setting these up, I'm able to use `⌘J`, to switch to the next tmux windo
 
 First, I had to figure out the hex codes for `C-\` (it's `0x1C`) and any subsequent character I wanted to send. To find normal keys, `man ascii` shows the octal, hex, and decimal versions of ascii characters.
 
-![man ascii](/images/tmux/ascii_hex.png)
-
-### Windows: WSL(Ubuntu) + ConEmu
-
-TODO: ConEmu attribution
-
-Unfortunately, the default terminal emulator that comes with the Windows Subsystem for Linux doesn't support custom keybindings. Because of this, I settled with installing ConEmu, which allows up to 32 custom macros. I'm not as familiar with Windows-key bindings in Windows 10, but it seemed like there are a lot of them that I didn't want to mess with. So, I chose Alt as a modifier key for use in ConEmu for shortcuts. Because this is a key that can be used as a meta-key for terminals (unlike the `⌘ ` key on Mac keyboards), I had to be careful about which ones to use.
-
-So far, this has worked out. Just like I'm able to use `⌘J` on MacOS to go to the next tmux window, I can use `Alt-J` on Windows to do the same.
+![An excerpt of `man ascii`](/images/tmux/ascii_hex.png)
 
 Installation
 ---
 
-When I'm at the keyboard of a new computer, I want to be able to get up and running as fast as possible, so I created a simple install script. 
+When I'm at the keyboard of a new computer, I want to be able to get up and running as fast as possible, so I created a simple install script.  This worked well on Mac and WSL Ubuntu, as well as plain ol' Ubuntu.
 
 ![The script sets up symlinks pointed to my dotfiles repo.](/images/tmux/install_script.png)
 
@@ -98,4 +110,4 @@ You can all of see them in my [`tmux.conf`](https://github.com/jeffawang/dotfile
 In Conclusion
 ---
 
-By now, `tmux` has become one of my favorite terminal tools, as is probably obvious from the length of this post. Hopefully you find this helpful, and happy tmuxin'!
+By now, `tmux` has become one of my favorite terminal tools, as is probably obvious from the length of this post. By taking a couple steps to integrate it slightly deeper into my workflows, I've been able to reduce context switching when moving between setups. Happy tmuxin'!
