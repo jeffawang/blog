@@ -5,25 +5,35 @@ type: post
 draft: true
 ---
 
-TODO: Change this leading text (it's used in the rss feed as the desc.)
-TODO: link to dotfiles
+![](/images/tmux/donkeysay.gif)
 
-By writing my own custom configurations and slowly adding things in over time, I know *exactly* what goes into my tmux configuration. Each line is tailored to my own specific needs. Because of this, I do not encourage copying my config files. I would highly recommend doing the same tinkering.
+This post explores a bit about integrating tmux into my workflow on MacOS and the Windows Subsystem for Linux.
 
-Target systems:
+Over time, I've built up a set of configurations that work well together for me. Because they're in [a git repo](https://github.com/jeffawang/dotfiles), they're available anywhere I can access github, and I can track any changes I make immediately.
 
-* Windows Subsystem for Linux
-* MacOS
-* Ubuntu
+Instead, I'd recommend picking and choosing a few things at a time to add, so that there's time to get used to any new changes. I'm a firm believer in knowing exactly what's my dotfiles, and choices that worked for me might not work for anyone else.
 
-Terminal Emulators
+#### Contents:
+
+- [Terminal Emulators](#terminal-emulators)
+  - [Windows: WSL(Ubuntu) + ConEmu](#wsl-conemu)
+  - [MacOS: iTerm2](#macos-iterm2)
+- [Installation](#installation)
+- [The tmux Prefix Key](#tmux-prefix)
+- [Some Nice Custom tmux Key Bindings](#tmux-keybinds)
+
+Terminal Emulators<a name="terminal-emulators"></a>
 ---
 
 One key feature I look for in Mac/Windows terminal emulators is the ability to create custom keybindings/macros.
 
 Ideally, the keybind system can send multiple key chords in series, so that I can combine tmux multi-chord keybinds into one. For example, in iTerm2, I've set `⌘J` to send `C-\` and then `J`, so that I can use the one chord to switch windows.
 
-Windows: WSL(Ubuntu) + ConEmu
+For sufferers of RSI and carpal tunnel, this is a huge relief. Plus, by doing half the keystrokes and not having to move off the home-row, it's more than twice as fast than using two-chord bindings.
+
+Furthermore, because it's just sending the character codes to the terminal, the same keybindings can be used in a tmux session accessed through ssh.
+
+Windows: WSL(Ubuntu) + ConEmu<a name="wsl-conemu"></a>
 ---
 
 On Windows, I use [ConEmu](https://conemu.github.io/) as a terminal emulator. This is because the default terminal emulator that comes with WSL doesn't support custom keybindings.
@@ -42,7 +52,7 @@ So far, this has worked out. Just like I'm able to use `⌘J` on MacOS to go to 
 
 One caveat is that ConEmu only supports having 32 macros. This is enough for me at the moment, but if I need more in the future, I may look into something like AutoHotkey.
 
-MacOS: iTerm2
+MacOS: iTerm2<a name="macos-iterm2"></a>
 ---
 
 For MacOS, I chose iTerm2 because it's able to send a series of hex codes to the terminal via a keybind. This way, if I am using tmux through ssh, I can still use the keybindings, as if tmux were running locally.
@@ -57,7 +67,7 @@ First, I had to figure out the hex codes for `C-\` (it's `0x1C`) and any subsequ
 
 ![An excerpt of `man ascii`](/images/tmux/ascii_hex.png)
 
-Installation
+Installation<a name="installation"></a>
 ---
 
 When I'm at the keyboard of a new computer, I want to be able to get up and running as fast as possible, so I created a simple install script.  This worked well on Mac and WSL Ubuntu, as well as plain ol' Ubuntu.
@@ -66,7 +76,7 @@ When I'm at the keyboard of a new computer, I want to be able to get up and runn
 
 Because the config files are symlinks to the dotfiles repo, any changes I make are immediately tracked in git; I can commit them right away, or if it stops working, I can revert.
 
-The tmux Prefix Key
+The tmux Prefix Key<a name="tmux-prefix"></a>
 ---
 
 Right now, I'm using `C-\` as a prefix. In bash, it's used for sending SIGQUIT. I never really find myself doing this, and if I need it, I'll be okay with pressing `C-\` twice.
@@ -75,14 +85,14 @@ Here's an evaluation of various prefixes, starting with mine.
 
 | tmux Prefix | My assessment                                                                                                                                                 |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `C-\`       | I use this. It sends SIGQUIT in bash, and not much else for me.                                                                                               |
-| `C-b`       | the default prefix. I use this to go back one character in bash.                                                                                              |
+| `C-\`       | My current prefix. It sends SIGQUIT in bash, but I never really used that.                                                                                    |
+| `C-b`       | The default prefix. I use this to go back one character in bash.                                                                                              |
 | `C-a`       | screen's default prefix. I use this to go back to the start of the line in bash.                                                                              |
-| `C-o`       | I used this for a while, but I started using `vim-go`, which uses `C-x C-o` for completion. In bash, it is "operate-and-get-next", which I never really used. |
-| `C-space`   | The Windows terminal emulators I tried didn't support this. Also, while I am not one, I think emacs users use this for something.                             |
-| `` ` ``          | This (backtick) is useful for literal strings in go, writing markdown, and bash subshells (use `$()` though!)                                                                     |
+| `C-o`       | The `vim-go` plugin uses `C-x C-o` for completion. In bash, it is "operate-and-get-next", which I never really used.                                          |
+| `C-space`   | The Windows terminal emulators I tried didn't support this. I think emacs users use this for something.                                                       |
+| `` ` ``     | This (backtick) is useful for literal strings in go, writing markdown, and bash subshells (though I normally use `$()`)                                                 |
 
-My Favorite Custom Tmux Key Bindings
+My Favorite Custom Tmux Key Bindings<a name="tmux-keybinds"></a>
 ---
 
 Some tmux keybindings I use *a lot*. After getting them in my muscle memory, they feel very natural, especially since they don't require two chords anymore.
@@ -110,4 +120,6 @@ You can all of see them in my [`tmux.conf`](https://github.com/jeffawang/dotfile
 In Conclusion
 ---
 
-By now, `tmux` has become one of my favorite terminal tools, as is probably obvious from the length of this post. By taking a couple steps to integrate it slightly deeper into my workflows, I've been able to reduce context switching when moving between setups. Happy tmuxin'!
+By now, `tmux` has become one of my favorite terminal tools, as is probably obvious from the length of this post. By taking a couple steps to integrate it slightly deeper into my workflows, I've been able to reduce context switching when moving between setups.
+
+I hope this was helpful and informative. Happy tmuxin'!
