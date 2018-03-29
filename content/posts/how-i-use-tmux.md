@@ -3,7 +3,7 @@ title: "How I Use tmux"
 date: 2018-03-27T14:19:09-07:00
 type: post
 draft: false
-tags: ["tmux", "terminal", "dev", "windows", "macos"]
+tags: ["tmux", "terminal", "dev", "macos", "windows", "wsl"]
 ---
 
 ![](/images/tmux/donkeysay.gif)
