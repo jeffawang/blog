@@ -12,7 +12,7 @@ This post explores a bit about integrating tmux into my workflow on MacOS and th
 
 Over time, I've built up a set of configurations that work well together for me. Because they're in [a git repo](https://github.com/jeffawang/dotfiles), they're available anywhere I can access github, and I can track any changes I make immediately.
 
-Instead, I'd recommend picking and choosing a few things at a time to add, so that there's time to get used to any new changes. I'm a firm believer in knowing exactly what's my dotfiles, and choices that worked for me might not work for anyone else.
+I don't recommend copying my dotfiles exactly. Instead, I'd recommend picking and choosing a few things at a time to add, so that there's time to get used to any new changes. I'm a firm believer in knowing exactly what's my dotfiles, and choices that worked for me might not work for anyone else.
 
 #### Contents:
 
