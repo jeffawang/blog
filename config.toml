@@ -1,7 +1,9 @@
+# Site settings
 baseURL = ""
 languageCode = "en-us"
 title = "jeffawang"
 
+googleAnalytics = "UA-116606325-1"
 theme = "onetwothree"
 
 [params]
