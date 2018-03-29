@@ -29,7 +29,7 @@ One key feature I look for in Mac/Windows terminal emulators is the ability to c
 
 Ideally, the keybind system can send multiple key chords in series, so that I can combine tmux multi-chord keybinds into one. For example, in iTerm2, I've set `⌘J` to send `C-\` and then `J`, so that I can use the one chord to switch windows.
 
-For sufferers of RSI and carpal tunnel, this is a huge relief. Plus, by doing half the keystrokes and not having to move off the home-row, it's more than twice as fast than using two-chord bindings.
+For sufferers of RSI and carpal tunnel, this is a relief. Plus, by doing half the keystrokes and not having to move off the home-row, it's more than twice as fast than using two-chord bindings.
 
 Furthermore, because it's just sending the character codes to the terminal, the same keybindings can be used in a tmux session accessed through ssh.
 
@@ -55,15 +55,17 @@ One caveat is that ConEmu only supports having 32 macros. This is enough for me 
 MacOS: iTerm2<a name="macos-iterm2"></a>
 ---
 
-For MacOS, I chose iTerm2 because it's able to send a series of hex codes to the terminal via a keybind. This way, if I am using tmux through ssh, I can still use the keybindings, as if tmux were running locally.
+For MacOS, I chose iTerm2 because it's able to send a series of hex codes to the terminal via a keybind. Again, if I am using tmux through ssh, I can still use the keybindings, as if tmux were running locally.
 
-Setting up the keybinds is not the most straightforward process. In the iTerm2 Settings > Profiles > Keys, I added new keybindings with the "+" button. And in the dialog dropdown, I chose "Send Hex Code." There, I typed in the keybinding. For example, sending `C-\` then `d`, the key binding is `0x1C 0x64`.
+Setting up the keybinds is not the most straightforward process. In the iTerm2 Settings > Profiles > Keys, I added new keybindings with the "+" button. And in the dialog dropdown, I chose "Send Hex Code." There, I typed in the keybinding.
 
-After setting these up, I'm able to use `⌘J`, to switch to the next tmux window and `⌘K` to switch to the previous window
+For example, sending `C-\` then `d`, the key binding is `0x1C 0x64`.
+
+After setting these up, I'm able to do things like press `⌘J` to switch to the next tmux window and `⌘K` to switch to the previous window
 
 ![Custom keybinds combine key chords](/images/tmux/iterm2_settings.png)
 
-First, I had to figure out the hex codes for `C-\` (it's `0x1C`) and any subsequent character I wanted to send. To find normal keys, `man ascii` shows the octal, hex, and decimal versions of ascii characters.
+As a note, `man ascii` shows the octal, hex, and decimal versions of ascii characters and proved immensely useful for setting up the tmux-iTerm2 mapping.
 
 ![An excerpt of `man ascii`](/images/tmux/ascii_hex.png)
 
@@ -71,6 +73,8 @@ Installation<a name="installation"></a>
 ---
 
 When I'm at the keyboard of a new computer, I want to be able to get up and running as fast as possible, so I created a simple install script.  This worked well on Mac and WSL Ubuntu, as well as plain ol' Ubuntu.
+
+Primarily, it sets up symlinks to my config files in the right places.
 
 ![The script sets up symlinks pointed to my dotfiles repo.](/images/tmux/install_script.png)
 
@@ -81,7 +85,7 @@ The tmux Prefix Key<a name="tmux-prefix"></a>
 
 Right now, I'm using `C-\` as a prefix. In bash, it's used for sending SIGQUIT. I never really find myself doing this, and if I need it, I'll be okay with pressing `C-\` twice.
 
-Here's an evaluation of various prefixes, starting with mine.
+These are some of the prefix keys I considered.
 
 | tmux Prefix | My assessment                                                                                                                                                 |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -89,8 +93,8 @@ Here's an evaluation of various prefixes, starting with mine.
 | `C-b`       | The default prefix. I use this to go back one character in bash.                                                                                              |
 | `C-a`       | screen's default prefix. I use this to go back to the start of the line in bash.                                                                              |
 | `C-o`       | The `vim-go` plugin uses `C-x C-o` for completion. In bash, it is "operate-and-get-next", which I never really used.                                          |
-| `C-space`   | The Windows terminal emulators I tried didn't support this. I think emacs users use this for something.                                                       |
-| `` ` ``     | This (backtick) is useful for literal strings in go, writing markdown, and bash subshells (though I normally use `$()`)                                                 |
+| `C-space`   | The Windows terminal emulators I tried didn't support this. Also, I think this does something for emacs users.                                                |
+| `` ` ``     | This (backtick) is useful for literal strings in go, writing markdown, and bash subshells (though I normally use `$()`)                                       |
 
 My Favorite Custom Tmux Key Bindings<a name="tmux-keybinds"></a>
 ---
