@@ -16,7 +16,7 @@ commit: clone
 	# If there are public changes, make a commit.
 	msg="$$(git log -1 --pretty=%B)" && \
 		cd public && \
-		test -z "$(git status -s 2>/dev/null)" || \
+		test -z "$$(git status -s 2>/dev/null)" || \
 		(git add -A && git commit -am"$$msg")
 
 push:
