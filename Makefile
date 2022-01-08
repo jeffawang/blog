@@ -1,16 +1,16 @@
 PAGES_REMOTE ?= git@github.com:jeffawang/jeffawang.github.io.git
 
-build:
+build: clone
 	hugo
 
 dev:
 	hugo server -D
 
 clone:
-	# Clone the repo if not exists.
-	test -d public || git clone "${PAGES_REMOTE}" public
-	# Guard: does the git remote match?
-	cd public && test "${PAGES_REMOTE}" = "$$(git remote get-url origin)"
+	@# Cloning the repo if not exists.
+	@test -d public || git clone "${PAGES_REMOTE}" public
+	@# Guard: does the git remote match?
+	@cd public && test "${PAGES_REMOTE}" = "$$(git remote get-url origin)"
 
 commit: clone
 	# If there are public changes, make a commit.
