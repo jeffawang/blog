@@ -39,7 +39,7 @@ Windows: WSL(Ubuntu) + ConEmu<a name="wsl-conemu"></a>
 
 On Windows, I use [ConEmu](https://conemu.github.io/) as a terminal emulator. This is because the default terminal emulator that comes with WSL doesn't support custom keybindings.
 
-<img src="/images/tmux/conemu_tmux.png" style="border-radius: 0" alt="tmux, ConEmu, and WSL together"/>
+<p><img src="/images/tmux/conemu_tmux.png" style="border-radius: 0" alt="tmux, ConEmu, and WSL together"/></p>
 
 I like this setup because it's very similar to what I have on MacOS (as described in the next section). This greatly reduces the context switch when moving between Windows desktop and Macbook.
 
@@ -47,7 +47,7 @@ Since ConEmu isn't just for WSL, I had to [set up a bash task](/images/tmux/cone
 
 Then, I was able to set up macros, similar to keybindings I had in iTerm2.
 
-<img src="/images/tmux/conemu_settings.png" style="border-radius: 0" alt="ConEmu can support up to 32 macros"/>
+<p><img src="/images/tmux/conemu_settings.png" style="border-radius: 0" alt="ConEmu can support up to 32 macros"/></p>
 
 So far, this has worked out. Just like I'm able to use `⌘J` on MacOS to go to the next tmux window, I can use `Alt-J` on Windows to do the same.
 
