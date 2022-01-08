@@ -3,6 +3,12 @@ Blog
 
 Uses [hugo](https://gohugo.io/) static site generator to generate a blog.
 
+Use `Makefile` targets for local hosting and deploying in prod.
+
+- `make`: build the site into `public/`.
+- `make dev`: run a local server on `:1313`.
+- `make deploy`: build, commit, and push the site to production.
+
 Some useful commands
 ---
 
