@@ -10,3 +10,5 @@ theme = "onetwothree"
     twitter = "jeffawang"
     navigation = ["about.md"]
 
+# [markup.goldmark.renderer]
+# unsafe= true
